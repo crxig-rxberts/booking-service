@@ -42,7 +42,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: OWASP Dependency Check
         uses: dependency-check/Dependency-Check_Action@main
-        id: depcheck
         with:
           project: 'booking-service'
           path: '.'
@@ -51,4 +50,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dependency-check-report
-          path: ${{ steps.depcheck.outputs.report }}
+          path: ${{ github.workspace }}/reports
