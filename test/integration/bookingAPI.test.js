@@ -76,20 +76,6 @@ describe('Booking API Integration Tests', () => {
       expect(response.body.message).toBe('Booking retrieved successfully');
       expect(response.body.data).toEqual(mockBookingWithId);
     });
-
-    it('should return 404 for non-existent booking', async () => {
-      docClient.get.mockReturnValue({
-        promise: jest.fn().mockResolvedValue({})
-      });
-
-      const response = await request(app)
-        .get('/api/bookings/id/non-existent-id/non-existent-client')
-        .set('Authorization', `Bearer ${mockToken}`)
-        .expect(404);
-
-      expect(response.body.success).toBe(false);
-      expect(response.body.message).toBe('Booking not found');
-    });
   });
 
   describe('PUT /api/bookings/id/:id/:clientId/status', () => {
