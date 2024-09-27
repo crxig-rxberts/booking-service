@@ -12,26 +12,26 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      - run: npm i
+          node-version: '20'
+      - run: npm ci
       - run: npm run lint
 
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      - run: npm i
+          node-version: '20'
+      - run: npm ci
       - run: npm test
       - name: Upload coverage report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: coverage/
@@ -39,7 +39,13 @@ jobs:
   dependency-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci
       - name: OWASP Dependency Check
         uses: dependency-check/Dependency-Check_Action@main
         with:
@@ -47,7 +53,7 @@ jobs:
           path: '.'
           format: 'HTML'
       - name: Upload dependency check report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dependency-check-report
           path: ${{ github.workspace }}/reports
