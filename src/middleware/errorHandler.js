@@ -8,7 +8,7 @@ const {
   ForbiddenError
 } = require('./errors');
 
-function errorHandler(err, req, res) {
+function errorHandler(err, req, res, next) {
   const errorTypes = [
     ValidationError,
     NotFoundError,

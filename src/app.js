@@ -20,7 +20,7 @@ app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Not found' });
 });
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   logger.error('Unhandled error', { error: err });
   res.status(500).json({ success: false, message: 'Internal server error' });
 });

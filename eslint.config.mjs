@@ -34,7 +34,7 @@ export default [
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/display-name': 'off',
-      'no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
+      'no-unused-vars': ['error', { 'argsIgnorePattern': '^(next|_)' }],
       'no-console': ['warn', { allow: ['warn', 'error'] }],
     },
   },
